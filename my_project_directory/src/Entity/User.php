@@ -33,6 +33,41 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?string $password = null;
 
+    #[ORM\Column]
+    private ?\DateTimeImmutable $createdAt = null;
+
+    #[ORM\Column(type: 'datetime_immutable', nullable: true)]
+    private ?\DateTimeImmutable $updatedAt = null;
+
+
+    #[ORM\Column(length: 255)]
+    private ?string $apiToken = null;
+
+    #[ORM\Column(length: 50)]
+    private ?string $Nom = null;
+
+    #[ORM\Column(length: 50)]
+    private ?string $Prenom = null;
+
+    #[ORM\Column(length: 25)]
+    private ?string $Tel = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $Adresse = null;
+
+    #[ORM\Column(length: 5)]
+    private ?string $CodeP = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $Ville = null;
+
+
+    /**@throws \Exception  */
+    public function __construct()
+    {
+        $this->apiToken = bin2hex(random_bytes(20));
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -112,5 +147,113 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function eraseCredentials(): void
     {
         // @deprecated, to be removed when upgrading to Symfony 8
+    }
+
+    public function getCreatedAt(): ?\DateTimeImmutable
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTimeImmutable $createdAt): static
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeImmutable
+    {
+        return $this->updatedAt;
+    }
+
+    public function setUpdatedAt(\DateTimeImmutable $updatedAt): static
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    public function getApiToken(): ?string
+    {
+        return $this->apiToken;
+    }
+
+    public function setApiToken(string $apiToken): static
+    {
+        $this->apiToken = $apiToken;
+
+        return $this;
+    }
+
+    public function getNom(): ?string
+    {
+        return $this->Nom;
+    }
+
+    public function setNom(string $Nom): static
+    {
+        $this->Nom = $Nom;
+
+        return $this;
+    }
+
+    public function getPrenom(): ?string
+    {
+        return $this->Prenom;
+    }
+
+    public function setPrenom(string $Prenom): static
+    {
+        $this->Prenom = $Prenom;
+
+        return $this;
+    }
+
+    public function getTel(): ?string
+    {
+        return $this->Tel;
+    }
+
+    public function setTel(string $Tel): static
+    {
+        $this->Tel = $Tel;
+
+        return $this;
+    }
+
+    public function getAdresse(): ?string
+    {
+        return $this->Adresse;
+    }
+
+    public function setAdresse(string $Adresse): static
+    {
+        $this->Adresse = $Adresse;
+
+        return $this;
+    }
+
+    public function getCodeP(): ?string
+    {
+        return $this->CodeP;
+    }
+
+    public function setCodeP(string $CodeP): static
+    {
+        $this->CodeP = $CodeP;
+
+        return $this;
+    }
+
+    public function getVille(): ?string
+    {
+        return $this->Ville;
+    }
+
+    public function setVille(string $Ville): static
+    {
+        $this->Ville = $Ville;
+
+        return $this;
     }
 }
